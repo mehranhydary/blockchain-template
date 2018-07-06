@@ -3,7 +3,8 @@ import getWeb3 from "./utils/getWeb3";
 import contract from 'truffle-contract'
 /* Import your contracts here: */
 
-// import <contract> = from '..build/contracts/<contract>.json'
+// import <contract> from '../build/contracts/<contract>.json'
+import Patient from '../build/contracts/Patient.json'
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,12 @@ class App extends Component {
           /* Get the addrss from the json object that is returned */
     //    console.log(deployed_contract.address);
     // })
+    const Patient = contract(Patient)
+    Patient.setProvider(this.state.web3.currentProvider);
+    Patient.deployed()
+    .then(deployed_contract => {
+      console.log(deployed_contract.address);
+    })
     
   }
   /* Might have to listen for events 

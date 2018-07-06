@@ -1,9 +1,6 @@
-/* 
-    FOLLOW THE FOLLOWING FORMAT TO IMPORT OTHER CONTRACTS: 
-    
-    var Identity = artifacts.require("./Identity.sol");
+var Patient = artifacts.require("./Patient.sol");
 
-    module.exports = function(deployer) {
-    deployer.deploy(Identity);
-    };
-*/
+
+module.exports = function(deployer) {
+    deployer.deploy(Patient, 'Vikas Singla');
+};
