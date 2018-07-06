@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import getWeb3 from "./utils/getWeb3";
 import contract from 'truffle-contract'
-// Import your contracts here 
+/* Import your contracts here: */
+
+// import <contract> = from '..build/contracts/<contract>.json'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       web3: '',
-      account: ''
+      account: '',
+      /*
+        contractAddresses
+        
+      */
     }
   }
   componentDidMount() {
-    // Get web3 (this should be where you have deployed your smart contract)
-    // and initiate your smart contracts 
+    /* Get web3 (this should be where you have deployed your smart contract)
+     and initiate your smart contracts */
     getWeb3
     .then(results => {
       this.setState({
@@ -23,12 +29,20 @@ class App extends Component {
       console.log(this.state.account)
     })
   }
-  // Initiate any smart contracts I've deployed into this application    
+  /* Initiate any smart contracts I've deployed into this application */
   instantiateContract() {
-    const contract = require('truffle-contract');
+    /* Import each contract */
+    // const <> = contract(<contract>)
+    // <>.setProvider(this.state.web3.currentProvider)
+    // <>.deployed()
+    // .then(deployed_contract => {
+          /* Get the addrss from the json object that is returned */
+    //    console.log(deployed_contract.address);
+    // })
+    
   }
-  // Might have to listen for events 
-  // Any other fucntions specific to your blockchain 
+  /* Might have to listen for events 
+   Any other fucntions specific to your blockchain */
   render() {
     return (
       <div className="App">
