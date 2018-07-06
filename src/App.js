@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       web3: '',
       account: '',
+      patient_smart_contract_address: ''
       /*
         contractAddresses
         
@@ -25,9 +26,10 @@ class App extends Component {
     .then(results => {
       this.setState({
         web3: results.web3,
-        account: results.web3.eth.accounts[0]
+        account: results.web3.eth.accounts[0],
       })
       console.log(this.state.account)
+      this.instantiateContract();
     })
   }
   /* Initiate any smart contracts I've deployed into this application */
@@ -40,11 +42,16 @@ class App extends Component {
           /* Get the addrss from the json object that is returned */
     //    console.log(deployed_contract.address);
     // })
-    const Patient = contract(Patient)
-    Patient.setProvider(this.state.web3.currentProvider);
-    Patient.deployed()
+    const patient = contract(Patient)
+    patient.setProvider(this.state.web3.currentProvider);
+    
+    patient.deployed()
     .then(deployed_contract => {
       console.log(deployed_contract.address);
+      this.setState({patient_smart_contract_address: deployed_contract.address})
+    })
+    .catch(err => {
+      console.log(err);
     })
     
   }
@@ -61,6 +68,9 @@ class App extends Component {
         </p>
         <p className="App-intro">
           You are logged in as: <code>{this.state.account}</code>.
+        </p>
+        <p className="App-intro">
+          Your patient smart contract: <code>{this.state.patient_smart_contract_address}</code>.
         </p>
       </div>
     );

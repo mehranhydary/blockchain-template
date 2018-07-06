@@ -23,7 +23,7 @@ let getWeb3 = new Promise(function(resolve, reject) {
       // If you are developing locally and using the Ganache Suite...
       // 8545: ganache-cli
       // 7545: ganache (GUI)
-      var provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545')
+      var provider = new Web3.providers.HttpProvider('http://localhost:8545')
 
       web3 = new Web3(provider)
 
